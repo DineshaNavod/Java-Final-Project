@@ -8,7 +8,7 @@ The system is designed to manage academic and administrative activities efficien
 
 ---
 
-## ⚙️ Technologies Used
+## ⚙️ Technologies Used-
 
 - Java (OOP, Swing / JavaFX)
 - MySQL Database
