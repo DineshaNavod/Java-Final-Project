@@ -6,6 +6,14 @@ public class LecUndergraduate {
     private String email;
     private String phone;
     private int    userId;
+    private String status;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public LecUndergraduate() {}
 

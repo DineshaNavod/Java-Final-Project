@@ -137,13 +137,30 @@ public class LecMarksPanel extends JPanel {
             List<LecMarks> list = marksDAO.getByCourse(cCode);
             List<LecUndergraduate> students = ugDAO.getAll();
             java.util.Map<String, String> nameMap = new java.util.HashMap<>();
-            for (LecUndergraduate u : students) nameMap.put(u.getRegNo(), u.getFullName());
+            java.util.Map<String, String> statusMap = new java.util.HashMap<>();
+            for (LecUndergraduate u : students) {
+                String status = u.getStatus();
+                if (status == null) status = "PROPER";
+                statusMap.put(u.getRegNo(), status.toUpperCase());
+            }
 
             for (LecMarks m : list) {
+
+                String status = statusMap.getOrDefault(m.getRegNo(), "PROPER").toUpperCase();
+
+                String realGrade = m.getGrade();
+
+                // ⭐ FINAL RULE: REPEAT = C
+                String displayGrade = status.contains("REPEAT")
+                        ? "C"
+                        : realGrade;
+
                 tableModel.addRow(new Object[]{
                         m.getRegNo(),
                         nameMap.getOrDefault(m.getRegNo(), "–"),
-                        fmt(m.getQ1Marks()), fmt(m.getQ2Marks()), fmt(m.getQ3Marks()),
+                        fmt(m.getQ1Marks()),
+                        fmt(m.getQ2Marks()),
+                        fmt(m.getQ3Marks()),
                         fmt(m.getBestTwoQuizAvg()),
                         fmt(m.getAssignmentMarks()),
                         fmt(m.getMidMarks()),
@@ -151,12 +168,15 @@ public class LecMarksPanel extends JPanel {
                         fmt(m.getEndMarks()),
                         fmt(m.getFinalExamMarks()),
                         fmt(m.getTotalMarks()),
-                        m.getGrade(),
+                        displayGrade,   // ⭐ ONLY CHANGE
                         m.isCAEligible() ? "YES" : "NO"
                 });
             }
-            if (list.isEmpty())
+
+            if (list.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No marks found for this course.");
+            }
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
