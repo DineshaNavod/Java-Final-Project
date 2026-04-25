@@ -17,13 +17,13 @@ public class AdminDashboard extends JFrame {
 
     // Nav items: {icon, label, card name}
     private static final String[][] NAV_ITEMS = {
-        {"📊", "Dashboard",    "dashboard"},
-        {"👤", "Users",        "users"},
-        {"📚", "Courses",      "courses"},
-        {"📋", "Notices",      "notices"},
-        {"🗓", "Timetable",   "timetable"},
-        {"🪪", "My Profile",   "profile"},
-        {"⚙",  "Settings",    "settings"},
+        {"", "Dashboard",    "dashboard"},
+        {"", "Users",        "users"},
+        {"", "Courses",      "courses"},
+        {"", "Notices",      "notices"},
+        {"", "Timetable",   "timetable"},
+        {"", "My Profile",   "profile"},
+        {"",  "Settings",    "settings"},
     };
 
     public AdminDashboard(User user) {
@@ -110,7 +110,7 @@ public class AdminDashboard extends JFrame {
         navPanel.setBorder(new EmptyBorder(12, 12, 12, 12));
 
         JLabel navLabel = new JLabel("MAIN MENU");
-        navLabel.setFont(new Font("Segoe UI", Font.BOLD, 10));
+        navLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 10));
         navLabel.setForeground(new Color(255, 255, 255, 80));
         navLabel.setBorder(new EmptyBorder(8, 8, 8, 8));
         navLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -120,7 +120,7 @@ public class AdminDashboard extends JFrame {
             // Insert section label before "My Profile"
             if (item[2].equals("profile")) {
                 JLabel acctLabel = new JLabel("ACCOUNT");
-                acctLabel.setFont(new Font("Segoe UI", Font.BOLD, 10));
+                acctLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 10));
                 acctLabel.setForeground(new Color(255, 255, 255, 80));
                 acctLabel.setBorder(new EmptyBorder(14, 8, 6, 8));
                 acctLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -226,17 +226,17 @@ public class AdminDashboard extends JFrame {
         String initial = currentUser.getFullName() != null && !currentUser.getFullName().isEmpty()
                 ? String.valueOf(currentUser.getFullName().charAt(0)).toUpperCase() : "A";
         JLabel initLbl = new JLabel(initial);
-        initLbl.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        initLbl.setFont(new Font("Segoe UI Emoji", Font.BOLD, 16));
         initLbl.setForeground(Color.WHITE);
         avatar.add(initLbl);
 
         JPanel info = new JPanel(new GridLayout(2, 1, 0, 2));
         info.setOpaque(false);
         JLabel name = new JLabel(currentUser.getFullName() != null ? currentUser.getFullName() : "Admin");
-        name.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        name.setFont(new Font("Segoe UI Emoji", Font.BOLD, 12));
         name.setForeground(Color.WHITE);
         JLabel role = new JLabel("System Administrator");
-        role.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+        role.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 10));
         role.setForeground(new Color(160, 220, 190));
         info.add(name);
         info.add(role);
@@ -246,16 +246,12 @@ public class AdminDashboard extends JFrame {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                if (getModel().isRollover()) {
-                    g2.setColor(new Color(0xE74C3C));
-                    g2.fillOval(0, 0, getWidth(), getHeight());
-                }
                 g2.dispose();
                 super.paintComponent(g);
             }
         };
-        logoutBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        logoutBtn.setForeground(new Color(200, 220, 210));
+        logoutBtn.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
+        logoutBtn.setForeground(Color.WHITE);
         logoutBtn.setContentAreaFilled(false);
         logoutBtn.setBorderPainted(false);
         logoutBtn.setFocusPainted(false);

@@ -78,13 +78,14 @@ public class DashboardPanel extends JPanel {
         card.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         JLabel title = new JLabel("👥 User Summary");
-        title.setFont(AppTheme.FONT_SUBTITLE);
+        title.setFont(new Font("Segoe UI Emoji", Font.BOLD, 16));
         title.setForeground(AppTheme.TEXT_PRIMARY);
         title.setBorder(new EmptyBorder(0, 0, 14, 0));
 
         String[] cols = {"Role", "Count"};
         JTable table = UIComponents.styledTable(cols);
         DefaultTableModel model = (DefaultTableModel) table.getModel();
+        table.getTableHeader().setForeground(Color.BLACK);
 
         try {
             model.addRow(new Object[]{"Lecturers", userDAO.countByRole(2)});
@@ -106,7 +107,7 @@ public class DashboardPanel extends JPanel {
         card.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         JLabel title = new JLabel("⚡ Quick Actions");
-        title.setFont(AppTheme.FONT_SUBTITLE);
+        title.setFont(new Font("Segoe UI Emoji", Font.BOLD, 16));
         title.setForeground(AppTheme.TEXT_PRIMARY);
         title.setBorder(new EmptyBorder(0, 0, 14, 0));
 
@@ -126,7 +127,7 @@ public class DashboardPanel extends JPanel {
             row.setBorder(new EmptyBorder(10, 14, 10, 14));
 
             JLabel lbl = new JLabel(qa[0]);
-            lbl.setFont(AppTheme.FONT_BODY);
+            lbl.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
             lbl.setForeground(AppTheme.TEXT_PRIMARY);
 
             JLabel hint = new JLabel(qa[1]);
