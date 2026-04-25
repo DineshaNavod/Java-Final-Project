@@ -220,7 +220,7 @@ public class LoginFrame extends JFrame {
             switch (user.getRoleId()) {
                 case 1 -> SwingUtilities.invokeLater(() -> new AdminDashboard(user).setVisible(true));
                 case 2 -> SwingUtilities.invokeLater(() -> new LecturerDashboard(user).setVisible(true));
-                //case 3 -> SwingUtilities.invokeLater(() -> new TODashboard(user).setVisible(true));
+                case 3 -> SwingUtilities.invokeLater(() -> new TODashboard(user).setVisible(true));
                 default -> {
                     errorLabel.setText("⚠ This portal is for Admin & Lecturer only.");
                     // Re-show the login frame

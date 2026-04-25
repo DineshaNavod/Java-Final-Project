@@ -13,7 +13,7 @@ import java.util.List;
 public class TOAttendancePanel extends JPanel {
 
     private final TOAttendanceDAO attDAO   = new TOAttendanceDAO();
-    private final UndergraduateDAO ugDAO    = new UndergraduateDAO();
+    private final LecUndergraduateDAO ugDAO    = new LecUndergraduateDAO();
     private final TOTimetableDAO ttDAO    = new TOTimetableDAO();
 
     private JTable            table;

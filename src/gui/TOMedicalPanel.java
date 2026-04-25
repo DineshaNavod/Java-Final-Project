@@ -13,7 +13,7 @@ import java.util.List;
 public class TOMedicalPanel extends JPanel {
 
     private final TOMedicalDAO medDAO = new TOMedicalDAO();
-    private final UndergraduateDAO ugDAO  = new UndergraduateDAO();
+    private final LecUndergraduateDAO ugDAO  = new LecUndergraduateDAO();
     private final TOTimetableDAO ttDAO  = new TOTimetableDAO();
 
     private JTable            table;

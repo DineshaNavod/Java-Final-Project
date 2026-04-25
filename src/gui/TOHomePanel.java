@@ -12,7 +12,7 @@ import java.util.List;
 public class TOHomePanel extends JPanel {
 
     private final User             currentUser;
-    private final UndergraduateDAO ugDAO      = new UndergraduateDAO();
+    private final LecUndergraduateDAO ugDAO      = new LecUndergraduateDAO();
     private final TOAttendanceDAO attDAO     = new TOAttendanceDAO();
     private final TOMedicalDAO medDAO     = new TOMedicalDAO();
     private final NoticeDAO        noticeDAO  = new NoticeDAO();
