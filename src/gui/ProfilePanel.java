@@ -164,7 +164,6 @@ public class ProfilePanel extends JPanel {
         noteBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
         JLabel noteLabel = new JLabel("⚠  Username and password cannot be changed here.");
         noteLabel.setFont(AppTheme.FONT_SMALL);
-        noteLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
         noteLabel.setForeground(new Color(0x856404));
         noteBox.add(noteLabel);
 

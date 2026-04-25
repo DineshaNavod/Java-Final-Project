@@ -33,7 +33,6 @@ public class UserManagementPanel extends JPanel {
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
         header.add(UIComponents.sectionTitle("👤 User Management"), BorderLayout.WEST);
 
-
         JButton addBtn = UIComponents.primaryButton("＋ Add User");
         addBtn.addActionListener(e -> showUserDialog(null));
         header.add(addBtn, BorderLayout.EAST);
@@ -44,7 +43,6 @@ public class UserManagementPanel extends JPanel {
         filterRow.setBorder(new EmptyBorder(0, 0, 14, 0));
 
         searchField = UIComponents.styledField("Search by name or username...");
-        searchField.setForeground(Color.GRAY);
         searchField.setPreferredSize(new Dimension(240, 36));
 
         roleFilter = new JComboBox<>(new String[]{"All Roles", "Admin", "Lecturer", "Technical Officer", "Undergraduate"});
@@ -258,7 +256,6 @@ public class UserManagementPanel extends JPanel {
 
         content.add(title);
         content.add(Box.createVerticalStrut(16));
-        content.add(saveBtn);
 
         JScrollPane sp = new JScrollPane(content);
         sp.setBorder(BorderFactory.createEmptyBorder());
