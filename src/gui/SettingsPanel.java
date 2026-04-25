@@ -40,7 +40,6 @@ public class SettingsPanel extends JPanel {
 
         JLabel title = new JLabel("🗄 Database Connection");
         title.setFont(AppTheme.FONT_SUBTITLE);
-        title.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
         title.setForeground(AppTheme.TEXT_PRIMARY);
         title.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -168,11 +167,11 @@ public class SettingsPanel extends JPanel {
         sep.setMaximumSize(new Dimension(Integer.MAX_VALUE, 1));
 
         String[][] details = {
-            {"", "Course:    ICT2132 – OOP Practicum"},
-            {"", "Faculty:   Faculty of Technology"},
-            {"", "Module:    Mini Project – B08"},
-            {"", "Stack:      Java Swing + MySQL"},
-            {"", "Year:       2026"},
+            {"📚", "Course:    ICT2132 – OOP Practicum"},
+            {"🏛", "Faculty:   Faculty of Technology"},
+            {"🎓", "Module:    Mini Project – B08"},
+            {"💻", "Stack:      Java Swing + MySQL"},
+            {"📅", "Year:       2026"},
         };
 
         JPanel detPanel = new JPanel();
@@ -191,7 +190,7 @@ public class SettingsPanel extends JPanel {
         }
 
         JLabel footerLbl = new JLabel("Built with ❤ for University of Ruhuna");
-        footerLbl.setFont(new Font("Segoe UI Emoji", Font.ITALIC, 11));
+        footerLbl.setFont(new Font("Segoe UI", Font.ITALIC, 11));
         footerLbl.setForeground(AppTheme.TEXT_MUTED);
         footerLbl.setAlignmentX(Component.LEFT_ALIGNMENT);
 
