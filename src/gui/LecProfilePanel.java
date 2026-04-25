@@ -140,6 +140,7 @@ public class LecProfilePanel extends JPanel {
         noteBox.setAlignmentX(Component.LEFT_ALIGNMENT);
         JLabel noteLbl = new JLabel("⚠ Username and password are managed by Admin.");
         noteLbl.setFont(AppTheme.FONT_SMALL);
+        noteLbl.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
         noteLbl.setForeground(new Color(0x856404));
         noteBox.add(noteLbl);
 
