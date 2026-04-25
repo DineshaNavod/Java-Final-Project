@@ -18,6 +18,7 @@ public class LoginFrame extends JFrame {
     private UserDAO userDAO = new UserDAO();
 
     public LoginFrame() {
+        setUndecorated(true);
         setTitle("TechNova – Login");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 580);
@@ -76,7 +77,7 @@ public class LoginFrame extends JFrame {
         logoCircle.add(logoIcon);
 
         JLabel appName = new JLabel("TechNova");
-        appName.setFont(new Font("Segoe UI", Font.BOLD, 36));
+        appName.setFont(new Font("Segoe UI Emoji", Font.BOLD, 36));
         appName.setForeground(Color.WHITE);
         appName.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -86,15 +87,19 @@ public class LoginFrame extends JFrame {
         tagline.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         // Feature bullets
-        String[] features = {"🛡 Admin Panel",  "👩‍🏫 Lecturer Portal",
-                "📊 Marks & GPA",  "📅 Attendance & Medicals"};
+        String[] features = {
+                "✔ View and update student profile details",
+                "✔ Register for available courses",
+                "✔ Check latest notices and announcements",
+                "✔ View weekly lecture timetable"
+        };
         JPanel feats = new JPanel();
         feats.setOpaque(false);
         feats.setLayout(new BoxLayout(feats, BoxLayout.Y_AXIS));
         feats.setAlignmentX(Component.LEFT_ALIGNMENT);
         for (String f : features) {
             JLabel fl = new JLabel(f);
-            fl.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+            fl.setFont(new Font("Dialog", Font.PLAIN, 13));
             fl.setForeground(new Color(200, 240, 215));
             fl.setBorder(new EmptyBorder(4, 0, 4, 0));
             feats.add(fl);
@@ -146,7 +151,7 @@ public class LoginFrame extends JFrame {
         passwordField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 
         errorLabel = new JLabel(" ");
-        errorLabel.setFont(AppTheme.FONT_SMALL);
+        errorLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 13));
         errorLabel.setForeground(AppTheme.DANGER);
         errorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
@@ -209,10 +214,13 @@ public class LoginFrame extends JFrame {
                 return;
             }
 
+
+            //add here
             dispose();
             switch (user.getRoleId()) {
                 case 1 -> SwingUtilities.invokeLater(() -> new AdminDashboard(user).setVisible(true));
                 case 2 -> SwingUtilities.invokeLater(() -> new LecturerDashboard(user).setVisible(true));
+                //case 3 -> SwingUtilities.invokeLater(() -> new TODashboard(user).setVisible(true));
                 default -> {
                     errorLabel.setText("⚠ This portal is for Admin & Lecturer only.");
                     // Re-show the login frame

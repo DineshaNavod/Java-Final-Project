@@ -88,7 +88,7 @@ public class LecProfilePanel extends JPanel {
         infoRows.setLayout(new BoxLayout(infoRows, BoxLayout.Y_AXIS));
         infoRows.setOpaque(false);
         infoRows.setBorder(new EmptyBorder(16, 0, 0, 0));
-        infoRows.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoRows.setAlignmentX(Component.CENTER_ALIGNMENT);
         addInfoRow(infoRows, "", "ID",       String.valueOf(lecturer.getUserId()));
         addInfoRow(infoRows, "", "Username", lecturer.getUsername());
 
