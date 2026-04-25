@@ -88,7 +88,7 @@ public class ProfilePanel extends JPanel {
         };
         roleBadge.setOpaque(false);
         roleBadge.setMaximumSize(new Dimension(160, 28));
-        JLabel roleLabel = new JLabel("🛡 " + currentUser.getRoleName());
+        JLabel roleLabel = new JLabel("" + currentUser.getRoleName());
         roleLabel.setFont(new Font("Segoe UI", Font.BOLD, 11));
         roleLabel.setForeground(AppTheme.PRIMARY_DARK);
         roleBadge.add(roleLabel);
@@ -99,8 +99,8 @@ public class ProfilePanel extends JPanel {
         infoRows.setOpaque(false);
         infoRows.setBorder(new EmptyBorder(20, 0, 0, 0));
 
-        addInfoRow(infoRows, "🆔", "ID", String.valueOf(currentUser.getUserId()));
-        addInfoRow(infoRows, "👤", "Username", currentUser.getUsername());
+        addInfoRow(infoRows, "", "ID", String.valueOf(currentUser.getUserId()));
+        addInfoRow(infoRows, "", "Username", currentUser.getUsername());
 
         avatarCircle.setAlignmentX(Component.CENTER_ALIGNMENT);
         nameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -164,6 +164,7 @@ public class ProfilePanel extends JPanel {
         noteBox.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
         JLabel noteLabel = new JLabel("⚠  Username and password cannot be changed here.");
         noteLabel.setFont(AppTheme.FONT_SMALL);
+        noteLabel.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 12));
         noteLabel.setForeground(new Color(0x856404));
         noteBox.add(noteLabel);
 
