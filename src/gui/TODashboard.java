@@ -255,7 +255,7 @@ public class TODashboard extends JFrame {
                     "Confirm Logout", JOptionPane.YES_NO_OPTION);
             if (c == JOptionPane.YES_OPTION) {
                 dispose();
-                SwingUtilities.invokeLater(() -> new TOLoginFrame().setVisible(true));
+                SwingUtilities.invokeLater(() -> new LoginFrame().setVisible(true));
             }
         });
 
