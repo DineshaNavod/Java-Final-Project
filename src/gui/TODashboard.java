@@ -1,56 +1,49 @@
 package gui;
 
 import dao.User;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.*;
 
-public class AdminDashboard extends JFrame {
+public class TODashboard extends JFrame {
 
-    private User currentUser;
-    private JPanel contentPanel;
-    private CardLayout cardLayout;
-    private JButton activeNavBtn;
+    private final User   currentUser;
+    private JPanel       contentPanel;
+    private CardLayout   cardLayout;
+    private JButton      activeNavBtn;
 
-    // Nav items: {icon, label, card name}
+    // icon | label | card-key
     private static final String[][] NAV_ITEMS = {
-        {"", "Dashboard",    "dashboard"},
-        {"", "Users",        "users"},
-        {"", "Courses",      "courses"},
-        {"", "Notices",      "notices"},
-        {"", "Timetable",   "timetable"},
-        {"", "My Profile",   "profile"},
-        {"",  "Settings",    "settings"},
+        {"", "Dashboard",   "home"},
+        {"", "Attendance",  "attendance"},
+        {"", "Medical",     "medical"},
+        {"", "Timetable",  "timetable"},
+        {"", "Notices",     "notices"},
     };
 
-    public AdminDashboard(User user) {
+    public TODashboard(User user) {
         this.currentUser = user;
-        setTitle("TechNova – Admin Panel");
+        setTitle("TechNova – Technical Officer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(1200, 750);
         setMinimumSize(new Dimension(960, 600));
         setLocationRelativeTo(null);
-        buildUI();
+        build();
     }
 
-    private void buildUI() {
+    private void build() {
         JPanel root = new JPanel(new BorderLayout());
         root.setBackground(AppTheme.BG_MAIN);
-
-        root.add(buildSidebar(),  BorderLayout.WEST);
-        root.add(buildContent(),  BorderLayout.CENTER);
-
+        root.add(buildSidebar(), BorderLayout.WEST);
+        root.add(buildContent(), BorderLayout.CENTER);
         setContentPane(root);
     }
 
     // ── SIDEBAR ──────────────────────────────────────────────────────
     private JPanel buildSidebar() {
         JPanel sidebar = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
+            @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 GradientPaint gp = new GradientPaint(0, 0, AppTheme.BG_SIDEBAR,
@@ -64,19 +57,17 @@ public class AdminDashboard extends JFrame {
         sidebar.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 0));
         sidebar.setOpaque(false);
 
-        // ── Logo section ──
-        JPanel logoPanel = new JPanel(new GridBagLayout());
-        logoPanel.setOpaque(false);
-        logoPanel.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 80));
-        logoPanel.setBorder(new EmptyBorder(0, 16, 0, 16));
+        // ── Logo block ──
+        JPanel logoWrap = new JPanel(new GridBagLayout());
+        logoWrap.setOpaque(false);
+        logoWrap.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 78));
+        logoWrap.setBorder(new EmptyBorder(0, 16, 0, 16));
 
         JPanel logoInner = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         logoInner.setOpaque(false);
 
-        // Green logo circle
         JPanel logoCircle = new JPanel(new GridBagLayout()) {
-            @Override
-            protected void paintComponent(Graphics g) {
+            @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(AppTheme.PRIMARY);
@@ -86,74 +77,86 @@ public class AdminDashboard extends JFrame {
         };
         logoCircle.setOpaque(false);
         logoCircle.setPreferredSize(new Dimension(38, 38));
-        JLabel logoIcon = new JLabel("🎓");
+        JLabel logoIcon = new JLabel("🔧");
         logoIcon.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
         logoCircle.add(logoIcon);
 
         JLabel appName = new JLabel("TechNova");
         appName.setFont(AppTheme.FONT_LOGO);
         appName.setForeground(Color.WHITE);
-
         logoInner.add(logoCircle);
         logoInner.add(appName);
-        logoPanel.add(logoInner);
+        logoWrap.add(logoInner);
 
-        // Separator
+        // Role tag
+        JPanel roleTag = new JPanel(new FlowLayout(FlowLayout.LEFT, 16, 2));
+        roleTag.setOpaque(false);
+        JLabel roleLbl = new JLabel("Technical Officer");
+        roleLbl.setFont(new Font("Segoe UI", Font.BOLD, 11));
+        roleLbl.setForeground(AppTheme.ACCENT_LIGHT);
+        roleTag.add(roleLbl);
+
+        JPanel topArea = new JPanel(new BorderLayout());
+        topArea.setOpaque(false);
+        topArea.add(logoWrap, BorderLayout.CENTER);
+        topArea.add(roleTag,  BorderLayout.SOUTH);
+
         JSeparator sep = new JSeparator();
         sep.setForeground(new Color(255, 255, 255, 30));
-        sep.setBackground(new Color(255, 255, 255, 30));
 
-        // ── Nav section ──
+        JPanel topBlock = new JPanel(new BorderLayout());
+        topBlock.setOpaque(false);
+        topBlock.add(topArea, BorderLayout.NORTH);
+        topBlock.add(sep,     BorderLayout.SOUTH);
+
+        // ── Nav items ──
         JPanel navPanel = new JPanel();
         navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.Y_AXIS));
         navPanel.setOpaque(false);
         navPanel.setBorder(new EmptyBorder(12, 12, 12, 12));
 
-        JLabel navLabel = new JLabel("MAIN MENU");
-        navLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 10));
-        navLabel.setForeground(new Color(255, 255, 255, 80));
-        navLabel.setBorder(new EmptyBorder(8, 8, 8, 8));
-        navLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        navPanel.add(navLabel);
+        JLabel sectionLbl = new JLabel("MAIN MENU");
+        sectionLbl.setFont(new Font("Segoe UI", Font.BOLD, 10));
+        sectionLbl.setForeground(new Color(255, 255, 255, 80));
+        sectionLbl.setBorder(new EmptyBorder(8, 8, 8, 8));
+        sectionLbl.setAlignmentX(Component.LEFT_ALIGNMENT);
+        navPanel.add(sectionLbl);
 
         for (String[] item : NAV_ITEMS) {
-            // Insert section label before "My Profile"
-            if (item[2].equals("profile")) {
-                JLabel acctLabel = new JLabel("ACCOUNT");
-                acctLabel.setFont(new Font("Segoe UI Emoji", Font.BOLD, 10));
-                acctLabel.setForeground(new Color(255, 255, 255, 80));
-                acctLabel.setBorder(new EmptyBorder(14, 8, 6, 8));
-                acctLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-                navPanel.add(acctLabel);
+            // section break before Timetable
+            if (item[2].equals("timetable")) {
+                JLabel viewLbl = new JLabel("VIEW ONLY");
+                viewLbl.setFont(new Font("Segoe UI", Font.BOLD, 10));
+                viewLbl.setForeground(new Color(255, 255, 255, 80));
+                viewLbl.setBorder(new EmptyBorder(14, 8, 6, 8));
+                viewLbl.setAlignmentX(Component.LEFT_ALIGNMENT);
+                navPanel.add(viewLbl);
             }
-            JButton navBtn = createNavButton(item[0], item[1], item[2]);
-            navPanel.add(navBtn);
+            JButton btn = makeNavBtn(item[0], item[1], item[2]);
+            navPanel.add(btn);
             navPanel.add(Box.createVerticalStrut(4));
-            if (item[2].equals("dashboard")) {
-                activeNavBtn = navBtn;
-                setActive(navBtn);
-            }
+            if (item[2].equals("home")) { activeNavBtn = btn; setActive(btn); }
         }
 
-        // ── Bottom user card ──
-        JPanel userCard = buildUserCard();
+        // Account section
+        JLabel acctLbl = new JLabel("ACCOUNT");
+        acctLbl.setFont(new Font("Segoe UI", Font.BOLD, 10));
+        acctLbl.setForeground(new Color(255, 255, 255, 80));
+        acctLbl.setBorder(new EmptyBorder(14, 8, 6, 8));
+        acctLbl.setAlignmentX(Component.LEFT_ALIGNMENT);
+        navPanel.add(acctLbl);
+        JButton profileBtn = makeNavBtn("", "My Profile", "profile");
+        navPanel.add(profileBtn);
 
-        JPanel top = new JPanel(new BorderLayout());
-        top.setOpaque(false);
-        top.add(logoPanel, BorderLayout.NORTH);
-        top.add(sep,       BorderLayout.CENTER);
-
-        sidebar.add(top,       BorderLayout.NORTH);
-        sidebar.add(navPanel,  BorderLayout.CENTER);
-        sidebar.add(userCard,  BorderLayout.SOUTH);
-
+        sidebar.add(topBlock,         BorderLayout.NORTH);
+        sidebar.add(navPanel,         BorderLayout.CENTER);
+        sidebar.add(buildUserCard(),  BorderLayout.SOUTH);
         return sidebar;
     }
 
-    private JButton createNavButton(String icon, String label, String card) {
+    private JButton makeNavBtn(String icon, String label, String card) {
         JButton btn = new JButton() {
-            @Override
-            protected void paintComponent(Graphics g) {
+            @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 if (this == activeNavBtn) {
@@ -167,7 +170,6 @@ public class AdminDashboard extends JFrame {
                 super.paintComponent(g);
             }
         };
-
         btn.setText(icon + "  " + label);
         btn.setFont(AppTheme.FONT_NAV);
         btn.setForeground(new Color(200, 235, 215));
@@ -180,19 +182,12 @@ public class AdminDashboard extends JFrame {
         btn.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH - 24, 44));
         btn.setAlignmentX(Component.LEFT_ALIGNMENT);
         btn.setBorder(new EmptyBorder(0, 12, 0, 12));
-
-        btn.addActionListener(e -> {
-            setActive(btn);
-            cardLayout.show(contentPanel, card);
-        });
-
+        btn.addActionListener(e -> { setActive(btn); cardLayout.show(contentPanel, card); });
         return btn;
     }
 
     private void setActive(JButton btn) {
-        if (activeNavBtn != null) {
-            activeNavBtn.setForeground(new Color(200, 235, 215));
-        }
+        if (activeNavBtn != null) activeNavBtn.setForeground(new Color(200, 235, 215));
         activeNavBtn = btn;
         btn.setForeground(Color.WHITE);
         if (contentPanel != null) contentPanel.repaint();
@@ -210,10 +205,9 @@ public class AdminDashboard extends JFrame {
         inner.setOpaque(false);
         inner.setBorder(new EmptyBorder(12, 10, 0, 10));
 
-        // Avatar circle
+        // Avatar
         JPanel avatar = new JPanel(new GridBagLayout()) {
-            @Override
-            protected void paintComponent(Graphics g) {
+            @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.setColor(AppTheme.ACCENT);
@@ -223,35 +217,33 @@ public class AdminDashboard extends JFrame {
         };
         avatar.setOpaque(false);
         avatar.setPreferredSize(new Dimension(38, 38));
-        String initial = currentUser.getFullName() != null && !currentUser.getFullName().isEmpty()
-                ? String.valueOf(currentUser.getFullName().charAt(0)).toUpperCase() : "A";
-        JLabel initLbl = new JLabel(initial);
-        initLbl.setFont(new Font("Segoe UI Emoji", Font.BOLD, 16));
+        String fn = currentUser.getFullName() != null ? currentUser.getFullName() : "T";
+        JLabel initLbl = new JLabel(String.valueOf(fn.charAt(0)).toUpperCase());
+        initLbl.setFont(new Font("Segoe UI", Font.BOLD, 16));
         initLbl.setForeground(Color.WHITE);
         avatar.add(initLbl);
 
         JPanel info = new JPanel(new GridLayout(2, 1, 0, 2));
         info.setOpaque(false);
-        JLabel name = new JLabel(currentUser.getFullName() != null ? currentUser.getFullName() : "Admin");
-        name.setFont(new Font("Segoe UI Emoji", Font.BOLD, 12));
-        name.setForeground(Color.WHITE);
-        JLabel role = new JLabel("System Administrator");
-        role.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 10));
-        role.setForeground(new Color(160, 220, 190));
-        info.add(name);
-        info.add(role);
+        JLabel nameLbl = new JLabel(fn.length() > 20 ? fn.substring(0, 18) + "…" : fn);
+        nameLbl.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        nameLbl.setForeground(Color.WHITE);
+        JLabel roleLbl = new JLabel("Technical Officer");
+        roleLbl.setFont(new Font("Segoe UI", Font.PLAIN, 10));
+        roleLbl.setForeground(new Color(160, 220, 190));
+        info.add(nameLbl); info.add(roleLbl);
 
+        // Logout
         JButton logoutBtn = new JButton("⏻") {
-            @Override
-            protected void paintComponent(Graphics g) {
+            @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g2.dispose();
                 super.paintComponent(g);
             }
         };
-        logoutBtn.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 14));
-        logoutBtn.setForeground(Color.WHITE);
+        logoutBtn.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        logoutBtn.setForeground(new Color(200, 220, 210));
         logoutBtn.setContentAreaFilled(false);
         logoutBtn.setBorderPainted(false);
         logoutBtn.setFocusPainted(false);
@@ -270,27 +262,25 @@ public class AdminDashboard extends JFrame {
         inner.add(avatar,    BorderLayout.WEST);
         inner.add(info,      BorderLayout.CENTER);
         inner.add(logoutBtn, BorderLayout.EAST);
-
         card.add(sep,   BorderLayout.NORTH);
         card.add(inner, BorderLayout.CENTER);
         return card;
     }
 
-    // ── CONTENT AREA ─────────────────────────────────────────────────
+    // ── CONTENT ──────────────────────────────────────────────────────
     private JPanel buildContent() {
-        cardLayout = new CardLayout();
+        cardLayout   = new CardLayout();
         contentPanel = new JPanel(cardLayout);
         contentPanel.setBackground(AppTheme.BG_MAIN);
 
-        contentPanel.add(new DashboardPanel(),          "dashboard");
-        contentPanel.add(new UserManagementPanel(),     "users");
-        contentPanel.add(new CourseManagementPanel(),   "courses");
-        contentPanel.add(new NoticeManagementPanel(),   "notices");
-        contentPanel.add(new TimetableManagementPanel(),"timetable");
-        contentPanel.add(new ProfilePanel(currentUser), "profile");
-        contentPanel.add(new SettingsPanel(),           "settings");
+        contentPanel.add(new TOHomePanel(currentUser),  "home");
+        contentPanel.add(new TOAttendancePanel(),        "attendance");
+        contentPanel.add(new TOMedicalPanel(),           "medical");
+        contentPanel.add(new TOTimetablePanel(),         "timetable");
+        contentPanel.add(new TONoticePanel(),            "notices");
+        contentPanel.add(new TOProfilePanel(currentUser),"profile");
 
-        cardLayout.show(contentPanel, "dashboard");
+        cardLayout.show(contentPanel, "home");
         return contentPanel;
     }
 }

@@ -110,7 +110,7 @@ public class UIComponents {
                 super.paintComponent(g);
             }
         };
-        btn.setFont(AppTheme.FONT_BUTTON);
+        btn.setFont(new Font("dialog", Font.BOLD, 12));
         btn.setForeground(Color.WHITE);
         btn.setContentAreaFilled(false);
         btn.setBorderPainted(false);
@@ -134,6 +134,7 @@ public class UIComponents {
             }
         };
         btn.setFont(AppTheme.FONT_BUTTON);
+        btn.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
         btn.setForeground(Color.WHITE);
         btn.setContentAreaFilled(false);
         btn.setBorderPainted(false);
@@ -162,6 +163,7 @@ public class UIComponents {
             }
         };
         btn.setFont(AppTheme.FONT_BUTTON);
+        btn.setFont(new Font("Segoe UI Emoji", Font.BOLD, 14));
         btn.setForeground(AppTheme.PRIMARY);
         btn.setContentAreaFilled(false);
         btn.setBorderPainted(false);
@@ -191,7 +193,7 @@ public class UIComponents {
         JTableHeader header = table.getTableHeader();
         header.setFont(AppTheme.FONT_SUBTITLE);
         header.setBackground(AppTheme.PRIMARY);
-        header.setForeground(Color.WHITE);
+        header.setForeground(Color.black);
         header.setPreferredSize(new Dimension(0, 42));
         header.setBorder(BorderFactory.createEmptyBorder());
         ((DefaultTableCellRenderer) header.getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
@@ -239,6 +241,7 @@ public class UIComponents {
     public static JLabel sectionTitle(String text) {
         JLabel lbl = new JLabel(text);
         lbl.setFont(AppTheme.FONT_TITLE);
+        lbl.setFont(new Font("Segoe UI Emoji", Font.BOLD, 18));
         lbl.setForeground(AppTheme.TEXT_PRIMARY);
         return lbl;
     }

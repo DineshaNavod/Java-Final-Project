@@ -45,15 +45,19 @@ public class CourseUnitDAO {
         return null;
     }
 
-    public boolean updateCourse(CourseUnit course) throws SQLException {
-        String sql = "UPDATE course_unit SET c_name=?, credit=?, is_theory=?, is_practicel=? WHERE c_code=?";
+    public boolean updateCourse(CourseUnit course, String oldCode) throws SQLException {
+        String sql = "UPDATE course_unit SET c_code=?, c_name=?, credit=?, is_theory=?, is_practicel=? WHERE c_code=?";
+
         try (Connection con = DatabaseConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, course.getCName());
-            ps.setInt(2, course.getCredit());
-            ps.setString(3, course.getIsTheory());
-            ps.setString(4, course.getIsPractical());
-            ps.setString(5, course.getCCode());
+
+            ps.setString(1, course.getCCode());
+            ps.setString(2, course.getCName());
+            ps.setInt(3, course.getCredit());
+            ps.setString(4, course.getIsTheory());
+            ps.setString(5, course.getIsPractical());
+            ps.setString(6, oldCode);
+
             return ps.executeUpdate() > 0;
         }
     }
