@@ -107,7 +107,7 @@ public class NoticeManagementPanel extends JPanel {
         content.setBorder(new EmptyBorder(24, 28, 24, 28));
         content.setBackground(AppTheme.BG_MAIN);
 
-        JLabel title = new JLabel(existing == null ? "📋 Post New Notice" : "📋 Edit Notice");
+        JLabel title = new JLabel(existing == null ? "Post New Notice" : "Edit Notice");
         title.setFont(AppTheme.FONT_TITLE);
         title.setForeground(AppTheme.TEXT_PRIMARY);
         title.setAlignmentX(Component.LEFT_ALIGNMENT);
