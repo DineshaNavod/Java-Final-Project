@@ -82,12 +82,14 @@ public class CourseUnitDAO {
     }
 
     private CourseUnit mapCourse(ResultSet rs) throws SQLException {
-        return new CourseUnit(
-            rs.getString("c_code"),
-            rs.getString("c_name"),
-            rs.getInt("credit"),
-            rs.getString("is_theory"),
-            rs.getString("is_practicel")
+        CourseUnit cu = new CourseUnit(
+                rs.getString("c_code"),
+                rs.getString("c_name"),
+                rs.getInt("credit"),
+                rs.getString("is_theory"),
+                rs.getString("is_practicel")
         );
+        try { cu.setSemester(rs.getString("semester")); } catch (SQLException ignored) {}
+        return cu;
     }
 }

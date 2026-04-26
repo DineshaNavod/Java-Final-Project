@@ -6,6 +6,7 @@ public class CourseUnit {
     private int credit;
     private String isTheory;
     private String isPractical;
+    private String semester;
 
     public CourseUnit() {}
 
@@ -28,6 +29,8 @@ public class CourseUnit {
     public void setCredit(int credit)           { this.credit = credit; }
     public void setIsTheory(String isTheory)    { this.isTheory = isTheory; }
     public void setIsPractical(String isPractical) { this.isPractical = isPractical; }
+    public String getSemester()    { return semester; }
+    public void setSemester(String v)       { this.semester = v; }
 
     @Override
     public String toString() { return cCode + " - " + cName; }
