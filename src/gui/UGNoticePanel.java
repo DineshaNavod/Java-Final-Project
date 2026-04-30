@@ -79,7 +79,7 @@ public class UGNoticePanel extends JPanel {
         card.setAlignmentX(Component.LEFT_ALIGNMENT);
         card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 110));
 
-        // Left gradient accent bar
+
         JPanel bar = new JPanel() {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
@@ -98,7 +98,7 @@ public class UGNoticePanel extends JPanel {
         body.setOpaque(false);
         body.setBorder(new EmptyBorder(16, 18, 16, 18));
 
-        // ID badge
+
         JPanel idBadge = new JPanel(new GridBagLayout()) {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();

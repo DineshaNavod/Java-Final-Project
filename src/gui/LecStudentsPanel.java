@@ -58,7 +58,7 @@ public class LecStudentsPanel extends JPanel {
         filterRow.add(searchField); filterRow.add(courseBox);
         filterRow.add(eligBtn); filterRow.add(refBtn);
 
-        // TABLE
+
         String[] cols = {"Reg No", "Full Name", "Email", "Phone"};
         model = new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -70,7 +70,7 @@ public class LecStudentsPanel extends JPanel {
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
         table.getColumnModel().getColumn(3).setPreferredWidth(120);
 
-        // DETAIL BUTTON
+
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         btnRow.setOpaque(false);
         btnRow.setBorder(new EmptyBorder(10, 0, 0, 0));
@@ -116,7 +116,7 @@ public class LecStudentsPanel extends JPanel {
         JTable tbl = UIComponents.styledTable(cols);
         tbl.setModel(dm);
 
-        // Colour last 3 columns
+
         javax.swing.table.TableCellRenderer eligRenderer = new javax.swing.table.DefaultTableCellRenderer() {
             @Override public Component getTableCellRendererComponent(
                     JTable t, Object v, boolean sel, boolean foc, int row, int col) {

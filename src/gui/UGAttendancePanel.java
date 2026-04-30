@@ -20,7 +20,7 @@ public class UGAttendancePanel extends JPanel {
     private DefaultTableModel detailModel;
     private JComboBox<String> courseBox, typeBox;
 
-    // Summary card labels
+
     private JLabel totalLbl, presentLbl, absentLbl, pctLbl, statusLbl;
 
     public UGAttendancePanel(User user) {
@@ -32,16 +32,16 @@ public class UGAttendancePanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
+
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
         header.add(UIComponents.sectionTitle("📅 My Attendance"), BorderLayout.WEST);
 
-        // ── SUMMARY BANNER ──
+
         UIComponents.RoundedPanel summaryBanner = buildSummaryBanner();
 
-        // ── FILTER ROW ──
+
         JPanel filterRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         filterRow.setOpaque(false);
         filterRow.setBorder(new EmptyBorder(16, 0, 12, 0));
@@ -68,7 +68,7 @@ public class UGAttendancePanel extends JPanel {
         filterRow.add(new JLabel("Type:"));   filterRow.add(typeBox);
         filterRow.add(loadBtn);
 
-        // ── DETAIL TABLE ──
+
         String[] cols = {"Date", "Type", "Status", "Session ID"};
         detailModel = new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -80,7 +80,7 @@ public class UGAttendancePanel extends JPanel {
         detailTable.getColumnModel().getColumn(2).setPreferredWidth(90);
         detailTable.getColumnModel().getColumn(3).setPreferredWidth(100);
 
-        // Colour status column
+
         detailTable.getColumnModel().getColumn(2).setCellRenderer(new DefaultTableCellRenderer() {
             @Override public Component getTableCellRendererComponent(
                     JTable t, Object v, boolean sel, boolean foc, int row, int col) {
@@ -113,7 +113,7 @@ public class UGAttendancePanel extends JPanel {
         add(header, BorderLayout.NORTH);
         add(center, BorderLayout.CENTER);
 
-        // Initial load
+
         loadDetails();
     }
 
@@ -169,7 +169,7 @@ public class UGAttendancePanel extends JPanel {
         try {
             List<LecAttendance> list;
             if (courseIdx <= 0) {
-                // All courses
+
                 list = attDAO.getByStudent(regNo);
                 if (type != null) {
                     list = list.stream()
@@ -193,7 +193,6 @@ public class UGAttendancePanel extends JPanel {
                 if ("present".equals(a.getStatus())) present++;
             }
 
-            // Update banner
             long absent = total - present;
             double pct = total > 0 ? (present * 100.0 / total) : 0;
             totalLbl.setText(String.valueOf(total));

@@ -27,7 +27,7 @@ public class UGHomePanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
+
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 24, 0));
@@ -41,7 +41,7 @@ public class UGHomePanel extends JPanel {
         header.add(title,   BorderLayout.WEST);
         header.add(dateLbl, BorderLayout.EAST);
 
-        // ── STAT CARDS ──
+
         UIComponents.StatCard sgpaCard   = new UIComponents.StatCard("📊", "My SGPA",       "–", AppTheme.PRIMARY);
         UIComponents.StatCard attCard    = new UIComponents.StatCard("📅", "Attendance",     "–", AppTheme.SUCCESS);
         UIComponents.StatCard courseCard = new UIComponents.StatCard("📚", "Courses",        "–", AppTheme.INFO);
@@ -52,7 +52,7 @@ public class UGHomePanel extends JPanel {
         statsRow.add(sgpaCard); statsRow.add(attCard);
         statsRow.add(courseCard); statsRow.add(medCard);
 
-        // ── LOWER PANELS ──
+
         JPanel lower = new JPanel(new GridLayout(1, 2, 20, 0));
         lower.setOpaque(false);
         lower.setBorder(new EmptyBorder(20, 0, 0, 0));
@@ -68,15 +68,15 @@ public class UGHomePanel extends JPanel {
         add(header, BorderLayout.NORTH);
         add(center, BorderLayout.CENTER);
 
-        // ── POPULATE STATS ──
+
         SwingUtilities.invokeLater(() -> {
             String regNo = currentUser.getUsername();
             try {
-                // SGPA
+
                 double sgpa = marksDAO.calculateSGPA(regNo);
                 sgpaCard.setValue(String.format("%.2f", sgpa));
 
-                // Overall attendance %
+
                 List<LecAttendance> atts = attDAO.getByStudent(regNo);
                 if (!atts.isEmpty()) {
                     long present = atts.stream().filter(a -> "present".equals(a.getStatus())).count();
@@ -84,10 +84,10 @@ public class UGHomePanel extends JPanel {
                     attCard.setValue(String.format("%.0f%%", pct));
                 } else { attCard.setValue("N/A"); }
 
-                // Course count
+
                 courseCard.setValue(String.valueOf(courseDAO.countCourses()));
 
-                // Medical records
+
                 medCard.setValue(String.valueOf(medDAO.getByStudent(regNo).size()));
             } catch (SQLException ignored) {}
         });

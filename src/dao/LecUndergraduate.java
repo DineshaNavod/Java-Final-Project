@@ -1,7 +1,7 @@
 package dao;
 
 public class LecUndergraduate {
-    private String regNo;      // username in users table
+    private String regNo;
     private String fullName;
     private String email;
     private String phone;

@@ -30,14 +30,6 @@ public class LecMedicalDAO {
         return list;
     }
 
-    public boolean updateStatus(String medicalId, String status) throws SQLException {
-        String sql = "UPDATE medical SET status=? WHERE medical_id=?";
-        try (Connection c = DatabaseConnection.getConnection();
-             PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setString(1, status); ps.setString(2, medicalId);
-            return ps.executeUpdate() > 0;
-        }
-    }
 
     private LecMedical map(ResultSet rs) throws SQLException {
         return new LecMedical(

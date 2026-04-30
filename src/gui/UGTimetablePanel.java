@@ -55,7 +55,7 @@ public class UGTimetablePanel extends JPanel {
         filterRow.add(new JLabel("Type:")); filterRow.add(typeFilter);
         filterRow.add(filterBtn); filterRow.add(refBtn);
 
-        // Table
+
         String[] cols = {"Session ID", "Course Code", "Course Name", "Date", "Type", "Duration", "Hall"};
         model = new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -66,7 +66,7 @@ public class UGTimetablePanel extends JPanel {
         for (int i = 0; i < widths.length; i++)
             table.getColumnModel().getColumn(i).setPreferredWidth(widths[i]);
 
-        // Type column colour
+
         table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
             @Override public Component getTableCellRendererComponent(
                     JTable t, Object v, boolean sel, boolean foc, int row, int col) {
@@ -82,7 +82,7 @@ public class UGTimetablePanel extends JPanel {
             }
         });
 
-        // Stats bar
+
         JPanel statsBar = new JPanel(new FlowLayout(FlowLayout.LEFT, 24, 10));
         statsBar.setOpaque(false);
         statsBar.setBorder(new EmptyBorder(8, 0, 0, 0));

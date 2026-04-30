@@ -9,7 +9,7 @@ import java.awt.geom.*;
 
 public class UIComponents {
 
-    // ── Rounded Panel ──────────────────────────────────────────────
+
     public static class RoundedPanel extends JPanel {
         private int radius;
         private Color bg;
@@ -31,7 +31,7 @@ public class UIComponents {
         }
     }
 
-    // ── Stat Card ───────────────────────────────────────────────────
+
     public static class StatCard extends RoundedPanel {
         private JLabel numLabel;
         private JLabel titleLabel;
@@ -77,7 +77,7 @@ public class UIComponents {
             add(left, BorderLayout.CENTER);
             add(iconWrapper, BorderLayout.EAST);
 
-            // Bottom color bar
+
             JPanel bar = new JPanel() {
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -96,7 +96,7 @@ public class UIComponents {
         public void setValue(String v) { numLabel.setText(v); }
     }
 
-    // ── Green Button ────────────────────────────────────────────────
+
     public static JButton primaryButton(String text) {
         JButton btn = new JButton(text) {
             @Override
@@ -120,7 +120,7 @@ public class UIComponents {
         return btn;
     }
 
-    // ── Danger Button ───────────────────────────────────────────────
+
     public static JButton dangerButton(String text) {
         JButton btn = new JButton(text) {
             @Override
@@ -144,7 +144,7 @@ public class UIComponents {
         return btn;
     }
 
-    // ── Outlined Button ─────────────────────────────────────────────
+
     public static JButton outlineButton(String text) {
         JButton btn = new JButton(text) {
             @Override
@@ -173,7 +173,7 @@ public class UIComponents {
         return btn;
     }
 
-    // ── Styled Table ─────────────────────────────────────────────────
+
     public static JTable styledTable(String[] columns) {
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -198,7 +198,7 @@ public class UIComponents {
         header.setBorder(BorderFactory.createEmptyBorder());
         ((DefaultTableCellRenderer) header.getDefaultRenderer()).setHorizontalAlignment(SwingConstants.LEFT);
 
-        // Alternating row renderer
+
         table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable t, Object v, boolean sel, boolean focus, int r, int c) {
@@ -214,7 +214,7 @@ public class UIComponents {
         return table;
     }
 
-    // ── Styled TextField ─────────────────────────────────────────────
+
     public static JTextField styledField(String placeholder) {
         JTextField field = new JTextField() {
             @Override
@@ -237,7 +237,7 @@ public class UIComponents {
         return field;
     }
 
-    // ── Styled Label ─────────────────────────────────────────────────
+
     public static JLabel sectionTitle(String text) {
         JLabel lbl = new JLabel(text);
         lbl.setFont(AppTheme.FONT_TITLE);
@@ -246,7 +246,7 @@ public class UIComponents {
         return lbl;
     }
 
-    // ── Scrollpane wrapper ───────────────────────────────────────────
+
     public static JScrollPane scrolled(Component comp) {
         JScrollPane sp = new JScrollPane(comp);
         sp.setBorder(BorderFactory.createEmptyBorder());

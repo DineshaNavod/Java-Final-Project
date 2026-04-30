@@ -32,7 +32,7 @@ public class LecAttendancePanel extends JPanel {
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
         header.add(UIComponents.sectionTitle("📅 Attendance Records"), BorderLayout.WEST);
 
-        // ── FILTER ──
+
         JPanel filterRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         filterRow.setOpaque(false);
         filterRow.setBorder(new EmptyBorder(0, 0, 12, 0));
@@ -72,7 +72,7 @@ public class LecAttendancePanel extends JPanel {
         batchTable.getColumnModel().getColumn(1).setPreferredWidth(150);
         batchTable.getColumnModel().getColumn(6).setPreferredWidth(120);
 
-        // Colour Status column
+
         batchTable.getColumnModel().getColumn(6).setCellRenderer(
             new javax.swing.table.DefaultTableCellRenderer() {
                 @Override public Component getTableCellRendererComponent(
@@ -171,7 +171,7 @@ public class LecAttendancePanel extends JPanel {
         content.setBorder(new EmptyBorder(16, 16, 16, 16));
         content.setBackground(AppTheme.BG_MAIN);
 
-        // Student picker + type
+
         JPanel top = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 8));
         top.setOpaque(false);
         JComboBox<String> ugBox   = new JComboBox<>();

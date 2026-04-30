@@ -6,7 +6,7 @@ import java.util.*;
 
 public class LecAttendanceDAO {
 
-    // ── INSERT ────────────────────────────────────────────────────────
+
     public boolean addAttendance(LecAttendance a) throws SQLException {
         String sql = "INSERT INTO attendance (att_id,type,atten_date,status,reg_no,session_id) VALUES(?,?,?,?,?,?)";
         try (Connection c = DatabaseConnection.getConnection();
@@ -81,8 +81,7 @@ public class LecAttendanceDAO {
         return list;
     }
 
-    // Summary: attendance % per student per course
-    // Returns map: regNo -> {total, present, percent}
+
     public Map<String, double[]> getAttendanceSummaryByCourse(String cCode, String type) throws SQLException {
         Map<String, double[]> map = new LinkedHashMap<>();
         String typeFilter = (type == null || type.equalsIgnoreCase("combined")) ? "" : " AND a.type='" + type + "'";
@@ -109,7 +108,6 @@ public class LecAttendanceDAO {
         return map;
     }
 
-    //  Count present/absent for one student+course
     public double[] getStudentAttendancePct(String regNo, String cCode, String type) throws SQLException {
         String typeFilter = (type == null || type.equalsIgnoreCase("combined")) ? "" : " AND a.type=?";
         String sql = "SELECT COUNT(*) AS total, " +
@@ -132,15 +130,7 @@ public class LecAttendanceDAO {
         return new double[]{0, 0, 0};
     }
 
-    // UPDATE status
-    public boolean updateStatus(String attId, String status) throws SQLException {
-        String sql = "UPDATE attendance SET status=? WHERE att_id=?";
-        try (Connection c = DatabaseConnection.getConnection();
-             PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setString(1, status); ps.setString(2, attId);
-            return ps.executeUpdate() > 0;
-        }
-    }
+
 
     private LecAttendance map(ResultSet rs) throws SQLException {
         return new LecAttendance(

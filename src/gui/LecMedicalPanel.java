@@ -56,7 +56,7 @@ public class LecMedicalPanel extends JPanel {
         table.setModel(model);
         table.getColumnModel().getColumn(6).setPreferredWidth(200);
 
-        // Colour status column
+
         table.getColumnModel().getColumn(7).setCellRenderer(
             new javax.swing.table.DefaultTableCellRenderer() {
                 @Override public Component getTableCellRendererComponent(

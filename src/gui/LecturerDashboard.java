@@ -58,7 +58,7 @@ public class LecturerDashboard extends JFrame {
         sidebar.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 0));
         sidebar.setOpaque(false);
 
-        // Logo
+
         JPanel logoPanel = new JPanel(new GridBagLayout());
         logoPanel.setOpaque(false);
         logoPanel.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 80));
@@ -90,7 +90,7 @@ public class LecturerDashboard extends JFrame {
         logoInner.add(appName);
         logoPanel.add(logoInner);
 
-        // Role tag under logo
+
         JPanel roleTag = new JPanel(new FlowLayout(FlowLayout.LEFT, 16, 0));
         roleTag.setOpaque(false);
         JLabel roleLbl = new JLabel("Lecturer Portal");
@@ -107,7 +107,7 @@ public class LecturerDashboard extends JFrame {
         sep.setForeground(new Color(255, 255, 255, 30));
         sep.setBackground(new Color(255, 255, 255, 30));
 
-        // Nav
+
         JPanel navPanel = new JPanel();
         navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.Y_AXIS));
         navPanel.setOpaque(false);
@@ -138,7 +138,7 @@ public class LecturerDashboard extends JFrame {
             }
         }
 
-        // Account section
+
         JLabel acctLabel = new JLabel("ACCOUNT");
         acctLabel.setFont(new Font("Segoe UI", Font.BOLD, 10));
         acctLabel.setForeground(new Color(255, 255, 255, 80));
@@ -216,7 +216,7 @@ public class LecturerDashboard extends JFrame {
         inner.setOpaque(false);
         inner.setBorder(new EmptyBorder(12, 10, 0, 10));
 
-        // Avatar
+
         JPanel avatar = new JPanel(new GridBagLayout()) {
             @Override
             protected void paintComponent(Graphics g) {

@@ -31,24 +31,24 @@ public class UGProfilePanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
+
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 24, 0));
         header.add(UIComponents.sectionTitle("🪪 My Profile"), BorderLayout.WEST);
 
-        // ── MAIN CARD ──
+
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout());
 
-        // ── LEFT: avatar + read-only info ──
+
         JPanel left = new JPanel();
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
         left.setOpaque(false);
         left.setPreferredSize(new Dimension(250, 0));
         left.setBorder(new EmptyBorder(36, 28, 36, 20));
 
-        // Profile picture panel (circular)
+
         JPanel picPanel = new JPanel(new GridBagLayout()) {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
@@ -83,7 +83,7 @@ public class UGProfilePanel extends JPanel {
         avatarLabel.setForeground(Color.WHITE);
         picPanel.add(avatarLabel);
 
-        // Load existing profile pic if set
+
         if (currentUser.getProfilePic() != null && !currentUser.getProfilePic().isBlank()) {
             try {
                 profileImage = ImageIO.read(new File(currentUser.getProfilePic()));
@@ -92,7 +92,7 @@ public class UGProfilePanel extends JPanel {
             } catch (IOException ignored) {}
         }
 
-        // Change picture button
+
         JButton changePicBtn = new JButton("Change Photo") {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
@@ -127,7 +127,7 @@ public class UGProfilePanel extends JPanel {
         displayNameLabel.setForeground(AppTheme.TEXT_PRIMARY);
         displayNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Role badge
+
         JPanel roleBadge = new JPanel(new GridBagLayout()) {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
@@ -145,7 +145,7 @@ public class UGProfilePanel extends JPanel {
         roleLbl.setForeground(AppTheme.PRIMARY_DARK);
         roleBadge.add(roleLbl);
 
-        // Static read-only info
+
         JPanel infoRows = new JPanel();
         infoRows.setLayout(new BoxLayout(infoRows, BoxLayout.Y_AXIS));
         infoRows.setOpaque(false);
@@ -167,12 +167,12 @@ public class UGProfilePanel extends JPanel {
         left.add(infoRows);
         left.add(Box.createVerticalGlue());
 
-        // Vertical divider
+
         JSeparator divider = new JSeparator(SwingConstants.VERTICAL);
         divider.setForeground(AppTheme.BORDER);
         divider.setPreferredSize(new Dimension(1, 0));
 
-        // ── RIGHT: edit form ──
+
         JPanel right = new JPanel();
         right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
         right.setOpaque(false);
@@ -188,7 +188,7 @@ public class UGProfilePanel extends JPanel {
         subLbl.setForeground(AppTheme.TEXT_MUTED);
         subLbl.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        // Read-only full name display
+
         JTextField fullNameDisplay = UIComponents.styledField(safeStr(currentUser.getFullName()));
         fullNameDisplay.setEditable(false);
         fullNameDisplay.setBackground(new Color(0xF0F0F0));
@@ -200,7 +200,7 @@ public class UGProfilePanel extends JPanel {
         phoneF = UIComponents.styledField("Phone Number");
         phoneF.setText(safeStr(currentUser.getPhone()));
 
-        // Warning note
+
         JPanel noteBox = new JPanel(new BorderLayout()) {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();

@@ -26,24 +26,20 @@ public class ProfilePanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 24, 0));
         header.add(UIComponents.sectionTitle("👤 My Profile"), BorderLayout.WEST);
 
-        // ── MAIN CARD ──
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout(0, 0));
 
-        // Left: Avatar side
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setOpaque(false);
         leftPanel.setPreferredSize(new Dimension(240, 0));
         leftPanel.setBorder(new EmptyBorder(40, 30, 40, 30));
 
-        // Avatar circle
         JPanel avatarCircle = new JPanel(new GridBagLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -145,7 +141,7 @@ public class ProfilePanel extends JPanel {
         emailF.setText(currentUser.getEmail() != null ? currentUser.getEmail() : "");
         phoneF.setText(currentUser.getPhone() != null ? currentUser.getPhone() : "");
 
-        // Non-editable fields (username/password note)
+
         JPanel noteBox = new JPanel(new BorderLayout()) {
             @Override
             protected void paintComponent(Graphics g) {
@@ -173,7 +169,7 @@ public class ProfilePanel extends JPanel {
         saveBtn.setMaximumSize(new Dimension(180, 42));
         saveBtn.addActionListener(e -> saveProfile());
 
-        // Layout form rows
+
         addFormRow(rightPanel, "Full Name", fullNameF);
         addFormRow(rightPanel, "Email Address", emailF);
         addFormRow(rightPanel, "Phone Number", phoneF);
@@ -185,7 +181,7 @@ public class ProfilePanel extends JPanel {
         rightPanel.add(subTitle);
         rightPanel.add(Box.createVerticalStrut(28));
 
-        // Re-add form rows in correct order
+
         rightPanel.removeAll();
         rightPanel.add(formTitle);
         rightPanel.add(Box.createVerticalStrut(4));
@@ -216,7 +212,6 @@ public class ProfilePanel extends JPanel {
     }
 
     private void addFormRow(JPanel panel, String label, JTextField field) {
-        // placeholder only, real add is via addFormRowDirect
     }
 
     private void addFormRowDirect(JPanel panel, String labelText, JTextField field) {
@@ -264,7 +259,6 @@ public class ProfilePanel extends JPanel {
             currentUser.setPhone(phone);
             userDAO.updateUser(currentUser);
 
-            // Update avatar initials
             avatarLabel.setText(getInitials(fn));
             JOptionPane.showMessageDialog(this, "✅ Profile updated successfully!");
         } catch (SQLException ex) {

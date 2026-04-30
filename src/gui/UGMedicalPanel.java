@@ -31,11 +31,11 @@ public class UGMedicalPanel extends JPanel {
         refBtn.addActionListener(e -> refresh());
         header.add(refBtn, BorderLayout.EAST);
 
-        // ── SUMMARY ROW ──
+
         UIComponents.RoundedPanel summary = buildSummaryRow();
         summary.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
 
-        // ── TABLE ──
+
         String[] cols = {"Medical ID", "Submitted", "Start Date", "End Date", "Status", "Description"};
         DefaultTableModel model = new DefaultTableModel(cols, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
@@ -49,7 +49,7 @@ public class UGMedicalPanel extends JPanel {
         table.getColumnModel().getColumn(4).setPreferredWidth(110);
         table.getColumnModel().getColumn(5).setPreferredWidth(280);
 
-        // Status colour
+
         table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
             @Override public Component getTableCellRendererComponent(
                     JTable t, Object v, boolean sel, boolean foc, int row, int col) {
@@ -68,10 +68,10 @@ public class UGMedicalPanel extends JPanel {
         this.tableModel = model;
         this.table = table;
 
-        // Load data
+
         loadData();
 
-        // Double-click to view full description
+
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override public void mouseClicked(java.awt.event.MouseEvent e) {
                 if (e.getClickCount() == 2) {
@@ -228,7 +228,7 @@ public class UGMedicalPanel extends JPanel {
             content.add(Box.createVerticalStrut(8));
         }
 
-        // Description area
+
         JLabel descKey = new JLabel("Description:");
         descKey.setFont(new Font("Segoe UI", Font.BOLD, 12));
         descKey.setForeground(AppTheme.TEXT_SECONDARY);

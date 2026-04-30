@@ -8,7 +8,7 @@ public class DatabaseConnection {
 
     private static final String URL = "jdbc:mysql://localhost:3306/technova";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = ""; // Change to your MySQL password
+    private static final String PASSWORD = "";
 
     private static Connection connection = null;
 

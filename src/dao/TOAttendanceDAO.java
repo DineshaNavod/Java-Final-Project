@@ -6,7 +6,7 @@ import java.util.*;
 
 public class TOAttendanceDAO {
 
-    // ── INSERT ────────────────────────────────────────────────────────
+
     public boolean addAttendance(TOAttendance a) throws SQLException {
         String sql = "INSERT INTO attendance (att_id,type,atten_date,status,reg_no,session_id) VALUES(?,?,?,?,?,?)";
         try (Connection c = DatabaseConnection.getConnection();
@@ -21,7 +21,7 @@ public class TOAttendanceDAO {
         }
     }
 
-    // ── UPDATE ────────────────────────────────────────────────────────
+
     public boolean updateAttendance(TOAttendance a) throws SQLException {
         String sql = "UPDATE attendance SET type=?,atten_date=?,status=?,reg_no=?,session_id=? WHERE att_id=?";
         try (Connection c = DatabaseConnection.getConnection();
@@ -36,7 +36,7 @@ public class TOAttendanceDAO {
         }
     }
 
-    // ── DELETE ────────────────────────────────────────────────────────
+
     public boolean deleteAttendance(String attId) throws SQLException {
         String sql = "DELETE FROM attendance WHERE att_id=?";
         try (Connection c = DatabaseConnection.getConnection();
@@ -172,7 +172,7 @@ public class TOAttendanceDAO {
         return map;
     }
 
-    // ── Count present/absent for one student+course ──────────────────
+
     public double[] getStudentAttendancePct(String regNo, String cCode, String type) throws SQLException {
         String typeFilter = (type == null || type.equalsIgnoreCase("combined")) ? "" : " AND a.type=?";
         String sql = "SELECT COUNT(*) AS total, " +

@@ -13,7 +13,7 @@ public class TODashboard extends JFrame {
     private CardLayout   cardLayout;
     private JButton      activeNavBtn;
 
-    // icon | label | card-key
+
     private static final String[][] NAV_ITEMS = {
         {"", "Dashboard",   "home"},
         {"", "Attendance",  "attendance"},

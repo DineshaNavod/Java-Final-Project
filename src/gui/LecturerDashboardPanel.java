@@ -24,7 +24,6 @@ public class LecturerDashboardPanel extends JPanel {
     }
 
     private void build() {
-        // HEADER
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 24, 0));
@@ -39,7 +38,6 @@ public class LecturerDashboardPanel extends JPanel {
         header.add(title,   BorderLayout.WEST);
         header.add(dateLbl, BorderLayout.EAST);
 
-        // STAT CARDS
         JPanel statsRow = new JPanel(new GridLayout(1, 4, 16, 0));
         statsRow.setOpaque(false);
 
@@ -53,7 +51,6 @@ public class LecturerDashboardPanel extends JPanel {
         statsRow.add(noticeCard);
         statsRow.add(eligCard);
 
-        // LOWER ROW
         JPanel lower = new JPanel(new GridLayout(1, 2, 20, 0));
         lower.setOpaque(false);
         lower.setBorder(new EmptyBorder(20, 0, 0, 0));
@@ -69,14 +66,12 @@ public class LecturerDashboardPanel extends JPanel {
         add(header, BorderLayout.NORTH);
         add(center, BorderLayout.CENTER);
 
-        // POPULATE STATS
         SwingUtilities.invokeLater(() -> {
             try {
                 courseCard.setValue(String.valueOf(courseDAO.countCourses()));
                 ugCard.setValue(String.valueOf(ugDAO.count()));
                 noticeCard.setValue(String.valueOf(noticeDAO.countNotices()));
 
-                // Count how many students are CA eligible across all courses
                 int eligible = 0;
                 List<CourseUnit> courses = courseDAO.getAllCourses();
                 for (CourseUnit cu : courses) {

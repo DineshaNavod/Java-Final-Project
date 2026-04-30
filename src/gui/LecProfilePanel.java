@@ -32,7 +32,7 @@ public class LecProfilePanel extends JPanel {
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout());
 
-        // LEFT part
+
         JPanel left = new JPanel();
         left.setLayout(new BoxLayout(left, BoxLayout.Y_AXIS));
         left.setOpaque(false);

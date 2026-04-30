@@ -240,7 +240,7 @@ public class LecMaterialsPanel extends JPanel {
         });
 
 
-        // (rows already added in loop above — re-add title first properly)
+
         JPanel p2 = new JPanel();
         p2.setLayout(new BoxLayout(p2, BoxLayout.Y_AXIS));
         p2.setBackground(AppTheme.BG_MAIN);

@@ -27,7 +27,7 @@ public class UGCoursesPanel extends JPanel {
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
         header.add(UIComponents.sectionTitle("📚 My Courses"), BorderLayout.WEST);
 
-        // Course cards grid
+
         JPanel grid = new JPanel(new GridLayout(0, 2, 16, 16));
         grid.setOpaque(false);
 
@@ -66,7 +66,7 @@ public class UGCoursesPanel extends JPanel {
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout(0, 0));
 
-        // Top colour bar
+
         JPanel topBar = new JPanel() {
             @Override protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
@@ -87,7 +87,7 @@ public class UGCoursesPanel extends JPanel {
         codeLbl.setFont(new Font("Segoe UI", Font.BOLD, 15));
         codeLbl.setForeground(Color.WHITE);
 
-        // Type badges
+
         JPanel badges = new JPanel(new FlowLayout(FlowLayout.RIGHT, 4, 0));
         badges.setOpaque(false);
         if ("YES".equals(cu.getIsTheory()))   badges.add(typeBadge("T", new Color(0x2980B9)));
@@ -96,7 +96,7 @@ public class UGCoursesPanel extends JPanel {
         topBar.add(codeLbl, BorderLayout.WEST);
         topBar.add(badges,  BorderLayout.EAST);
 
-        // Body
+
         JPanel body = new JPanel();
         body.setLayout(new BoxLayout(body, BoxLayout.Y_AXIS));
         body.setOpaque(false);
@@ -118,7 +118,7 @@ public class UGCoursesPanel extends JPanel {
         body.add(semLbl);
         body.add(Box.createVerticalStrut(12));
 
-        // Marks summary if available
+
         if (m != null) {
             JSeparator divider = new JSeparator();
             divider.setForeground(AppTheme.BORDER);

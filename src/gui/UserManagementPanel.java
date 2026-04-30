@@ -27,7 +27,7 @@ public class UserManagementPanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
+
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
@@ -38,7 +38,6 @@ public class UserManagementPanel extends JPanel {
         addBtn.addActionListener(e -> showUserDialog(null));
         header.add(addBtn, BorderLayout.EAST);
 
-        // ── FILTER ROW ──
         JPanel filterRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         filterRow.setOpaque(false);
         filterRow.setBorder(new EmptyBorder(0, 0, 14, 0));
@@ -60,12 +59,12 @@ public class UserManagementPanel extends JPanel {
         filterRow.add(roleFilter);
         filterRow.add(searchBtn);
 
-        // ── TABLE ──
+
         String[] cols = {"ID", "Full Name", "Username", "Role", "Email", "Phone"};
         table = UIComponents.styledTable(cols);
         model = (DefaultTableModel) table.getModel();
 
-        // Set column widths
+
         table.getColumnModel().getColumn(0).setPreferredWidth(50);
         table.getColumnModel().getColumn(1).setPreferredWidth(160);
         table.getColumnModel().getColumn(2).setPreferredWidth(120);
@@ -75,7 +74,7 @@ public class UserManagementPanel extends JPanel {
 
         JScrollPane scroll = UIComponents.scrolled(table);
 
-        // ── ACTION BUTTONS ──
+
         JPanel btnRow = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         btnRow.setOpaque(false);
         btnRow.setBorder(new EmptyBorder(12, 0, 0, 0));
@@ -92,7 +91,7 @@ public class UserManagementPanel extends JPanel {
         btnRow.add(editBtn);
         btnRow.add(delBtn);
 
-        // ── CARD WRAPPER ──
+
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout());
         card.setBorder(new EmptyBorder(20, 20, 20, 20));

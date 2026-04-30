@@ -31,7 +31,7 @@ public class LecMarksPanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
+
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
@@ -66,19 +66,19 @@ public class LecMarksPanel extends JPanel {
         filterRow.add(loadBtn);
         filterRow.add(batchBtn);
 
-        // TABLE
+
         tableModel = new DefaultTableModel(COLS, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
         marksTable = UIComponents.styledTable(COLS);
         marksTable.setModel(tableModel);
 
-        // Column widths
+
         int[] widths = {85, 140, 45, 45, 45, 65, 55, 50, 60, 70, 65, 55, 50, 80};
         for (int i = 0; i < widths.length && i < marksTable.getColumnCount(); i++)
             marksTable.getColumnModel().getColumn(i).setPreferredWidth(widths[i]);
 
-        // Custom cell renderer: colour Grade column, CA Eligible column
+
         javax.swing.table.TableCellRenderer gradeRenderer = new javax.swing.table.DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable t, Object v,
@@ -116,7 +116,7 @@ public class LecMarksPanel extends JPanel {
         btnRow.add(viewStudentBtn);
         btnRow.add(editBtn);
 
-        // ── CARD ──
+
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout());
         card.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -168,7 +168,7 @@ public class LecMarksPanel extends JPanel {
                         fmt(m.getEndMarks()),
                         fmt(m.getFinalExamMarks()),
                         fmt(m.getTotalMarks()),
-                        displayGrade,   // ⭐ ONLY CHANGE
+                        displayGrade,
                         m.isCAEligible() ? "YES" : "NO"
                 });
             }
@@ -304,7 +304,6 @@ public class LecMarksPanel extends JPanel {
         addRow(content, "End Exam (/100)", endF);
         content.add(Box.createVerticalStrut(10));
 
-        // Calc box
         UIComponents.RoundedPanel calcBox = new UIComponents.RoundedPanel(8, new Color(0xEAF7F0));
         calcBox.setLayout(new BorderLayout());
         calcBox.setBorder(new EmptyBorder(10, 14, 10, 14));
@@ -533,7 +532,6 @@ public class LecMarksPanel extends JPanel {
         dlg.setVisible(true);
     }
 
-    // ── helpers ──────────────────────────────────────────────────────
     private JLabel makeStat(String label, String val) {
         JLabel lbl = new JLabel("<html><b>" + val + "</b><br><small>" + label + "</small></html>");
         lbl.setFont(AppTheme.FONT_BODY);

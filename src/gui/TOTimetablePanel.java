@@ -31,13 +31,13 @@ public class TOTimetablePanel extends JPanel {
     }
 
     private void build() {
-        // ── HEADER ──
+
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
         header.add(UIComponents.sectionTitle("🗓 Department Timetable"), BorderLayout.WEST);
 
-        // View-only notice badge
+
         UIComponents.RoundedPanel badge = new UIComponents.RoundedPanel(20, new Color(0xFFF3CD));
         badge.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 6));
         badge.setPreferredSize(new Dimension(160, 36));
@@ -47,7 +47,7 @@ public class TOTimetablePanel extends JPanel {
         badge.add(badgeLbl);
         header.add(badge, BorderLayout.EAST);
 
-        // ── FILTER ROW ──
+
         JPanel filterRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         filterRow.setOpaque(false);
         filterRow.setBorder(new EmptyBorder(0, 0, 14, 0));
@@ -69,7 +69,7 @@ public class TOTimetablePanel extends JPanel {
         filterRow.add(new JLabel("Type:")); filterRow.add(typeFilter);
         filterRow.add(searchBtn); filterRow.add(refBtn);
 
-        // ── TABLE ──
+
         model = new DefaultTableModel(COLS, 0) {
             @Override public boolean isCellEditable(int r, int c) { return false; }
         };
@@ -79,7 +79,7 @@ public class TOTimetablePanel extends JPanel {
         for (int i = 0; i < widths.length; i++)
             table.getColumnModel().getColumn(i).setPreferredWidth(widths[i]);
 
-        // Type column badge renderer
+
         table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
             @Override public Component getTableCellRendererComponent(
                     JTable t, Object v, boolean sel, boolean foc, int row, int col) {
@@ -95,7 +95,7 @@ public class TOTimetablePanel extends JPanel {
             }
         });
 
-        // ── STATS BAR ──
+
         JPanel statsBar = new JPanel(new FlowLayout(FlowLayout.LEFT, 24, 10));
         statsBar.setOpaque(false);
         statsBar.setBorder(new EmptyBorder(10, 0, 0, 0));
@@ -109,10 +109,9 @@ public class TOTimetablePanel extends JPanel {
             statsBar.add(l);
         }
 
-        // Refresh stats when table loads
-        // Called after load()
 
-        // ── CARD ──
+
+
         UIComponents.RoundedPanel card = new UIComponents.RoundedPanel(AppTheme.CORNER_RADIUS, Color.WHITE);
         card.setLayout(new BorderLayout());
         card.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -129,7 +128,7 @@ public class TOTimetablePanel extends JPanel {
         add(card,   BorderLayout.CENTER);
     }
 
-    // Store refs to update after load
+
     private JLabel totalLbl, theoryLbl, practLbl;
 
     private void load() {

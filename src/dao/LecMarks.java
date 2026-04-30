@@ -27,7 +27,7 @@ public class LecMarks {
         this.endMarks       = end;
     }
 
-    // ── Getters ──
+    // Getters
     public String getRegNo()           { return regNo; }
     public String getCCode()           { return cCode; }
     public double getQ1Marks()         { return q1Marks; }
@@ -47,41 +47,34 @@ public class LecMarks {
     public void setMidMarks(double v)         { this.midMarks = v; }
     public void setEndMarks(double v)         { this.endMarks = v; }
 
-    // ────────────────────────────────────────────────────────────────
-    //  MARK CALCULATION LOGIC
-    //
-    //  1. Quiz average: pick best 2 out of 3 quizzes → average
-    //  2. CA (40%) = ((bestTwoQuizAvg + assignment + mid) / 300) * 40
-    //     → quizAvg out of 100, assignment out of 100, mid out of 100 → sum /300 *40
-    //  3. Final (60%) = (endMarks / 100) * 60
-    //  4. Total = CA + Final
-    // ────────────────────────────────────────────────────────────────
+
 
     public double getBestTwoQuizAvg() {
         double[] quizzes = {q1Marks, q2Marks, q3Marks};
         java.util.Arrays.sort(quizzes);
-        // Best two: index 1 and 2 after sort ascending
         return round2((quizzes[1] + quizzes[2]) / 2.0);
     }
 
-    /** CA portion mapped to 40 marks */
+
     public double getCAMarks() {
-        double quizAvg = getBestTwoQuizAvg();           // out of 100
-        double total300 = quizAvg + assignmentMarks + midMarks;   // out of 300
-        return round2((total300 / 300.0) * 40.0);
+        double quizAvg = getBestTwoQuizAvg(); // out of 100
+
+        double quizCA = (quizAvg / 100.0) * 10.0;
+        double assignmentCA = (assignmentMarks / 100.0) * 10.0;
+        double midCA = (midMarks / 100.0) * 20.0;
+
+        return round2(quizCA + assignmentCA + midCA);
     }
 
-    /** End exam portion mapped to 60 marks */
     public double getFinalExamMarks() {
         return round2((endMarks / 100.0) * 60.0);
     }
 
-    /** Grand total out of 100 */
+
     public double getTotalMarks() {
         return round2(getCAMarks() + getFinalExamMarks());
     }
 
-    /** Grade based on UGC Commission Circular No. 12-2024 */
     public String getGrade() {
         double total = getTotalMarks();
         if (total >= 85) return "A+";
@@ -98,7 +91,7 @@ public class LecMarks {
         return "E";
     }
 
-    /** Grade point for GPA calculation */
+
     public double getGradePoint() {
         return switch (getGrade()) {
             case "A+"  -> 4.0;
@@ -116,7 +109,7 @@ public class LecMarks {
         };
     }
 
-    /** CA eligibility: CA marks must be >= 40% of 40 = 16 */
+
     public boolean isCAEligible() {
         return getCAMarks() >= 16.0;
     }

@@ -28,11 +28,11 @@ public class UGGradesPanel extends JPanel {
         header.setBorder(new EmptyBorder(0, 0, 20, 0));
         header.add(UIComponents.sectionTitle("📊 Grades & GPA"), BorderLayout.WEST);
 
-        // ── SGPA BANNER ──
+
         UIComponents.RoundedPanel banner = buildSGPABanner();
         banner.setMaximumSize(new Dimension(Integer.MAX_VALUE, 90));
 
-        // ── MARKS TABLE ──
+
         String[] cols = {"Course Code", "Course Name", "Q1", "Q2", "Q3",
                          "Best Quiz Avg", "Assignment", "Mid", "CA/40",
                          "End Mark", "Final/60", "Total", "Grade", "CA Eligible"};
@@ -42,12 +42,12 @@ public class UGGradesPanel extends JPanel {
         JTable table = UIComponents.styledTable(cols);
         table.setModel(model);
 
-        // Column widths
+
         int[] widths = {90, 200, 45, 45, 45, 75, 75, 55, 60, 70, 65, 55, 55, 80};
         for (int i = 0; i < widths.length; i++)
             table.getColumnModel().getColumn(i).setPreferredWidth(widths[i]);
 
-        // Grade + CA Eligible colour renderer
+
         TableCellRenderer colRenderer = new DefaultTableCellRenderer() {
             @Override public Component getTableCellRendererComponent(
                     JTable t, Object v, boolean sel, boolean foc, int row, int col) {
@@ -73,7 +73,7 @@ public class UGGradesPanel extends JPanel {
         for (int i = 0; i < table.getColumnCount(); i++)
             table.getColumnModel().getColumn(i).setCellRenderer(colRenderer);
 
-        // Load data
+
         String regNo = currentUser.getUsername();
         try {
             List<LecMarks> marksList = marksDAO.getByStudent(regNo);
@@ -99,7 +99,7 @@ public class UGGradesPanel extends JPanel {
         card.setBorder(new EmptyBorder(20, 20, 20, 20));
         card.add(UIComponents.scrolled(table), BorderLayout.CENTER);
 
-        // Info note at bottom
+
         UIComponents.RoundedPanel infoBar = new UIComponents.RoundedPanel(8, new Color(0xEAF7F0));
         infoBar.setLayout(new FlowLayout(FlowLayout.LEFT, 14, 8));
         infoBar.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));

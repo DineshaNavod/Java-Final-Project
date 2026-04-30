@@ -41,7 +41,7 @@ public class UGDashboard extends JFrame {
         setContentPane(root);
     }
 
-    // ── SIDEBAR ──────────────────────────────────────────────────────
+
     private JPanel buildSidebar() {
         JPanel sidebar = new JPanel() {
             @Override protected void paintComponent(Graphics g) {
@@ -58,7 +58,7 @@ public class UGDashboard extends JFrame {
         sidebar.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 0));
         sidebar.setOpaque(false);
 
-        // Logo
+
         JPanel logoWrap = new JPanel(new GridBagLayout());
         logoWrap.setOpaque(false);
         logoWrap.setPreferredSize(new Dimension(AppTheme.SIDEBAR_WIDTH, 78));
@@ -109,7 +109,7 @@ public class UGDashboard extends JFrame {
         topBlock.add(topArea, BorderLayout.NORTH);
         topBlock.add(sep,     BorderLayout.SOUTH);
 
-        // Nav
+
         JPanel navPanel = new JPanel();
         navPanel.setLayout(new BoxLayout(navPanel, BoxLayout.Y_AXIS));
         navPanel.setOpaque(false);
@@ -129,7 +129,7 @@ public class UGDashboard extends JFrame {
             if (item[2].equals("home")) { activeNavBtn = btn; setActive(btn); }
         }
 
-        // Account section
+
         JLabel acctLbl = new JLabel("ACCOUNT");
         acctLbl.setFont(new Font("Segoe UI", Font.BOLD, 10));
         acctLbl.setForeground(new Color(255, 255, 255, 80));
@@ -256,7 +256,7 @@ public class UGDashboard extends JFrame {
         return card;
     }
 
-    // ── CONTENT ──────────────────────────────────────────────────────
+
     private JPanel buildContent() {
         cardLayout   = new CardLayout();
         contentPanel = new JPanel(cardLayout);
